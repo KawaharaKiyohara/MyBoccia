@@ -42,7 +42,7 @@ public class TeamFlowScript : MonoBehaviour
         m_NextBallImage = GameObject.Find("NextBallImage");
         if(m_NextBallImage == null)
         {
-            Debug.LogError("NextBallImageの取得に失敗しました");
+            // Debug.LogError("NextBallImageの取得に失敗しました");
         }
     }
 
@@ -330,7 +330,7 @@ public class TeamFlowScript : MonoBehaviour
     public void DecreaseBalls()
     {
         //ボールを減らす
-        Debug.Log("ボールを減らします");
+        // Debug.Log("ボールを減らします");
         switch (m_NextTeam)
         {
             case Team.Red:
@@ -395,17 +395,17 @@ public class TeamFlowScript : MonoBehaviour
             switch (m_NextTeam)
             {
                 case Team.Red:
-                    Debug.Log("次に赤チームが投げます");
-                    Debug.Log("残り" + m_RemainBalls[0] + "球です");
+                    // Debug.Log("次に赤チームが投げます");
+                    // Debug.Log("残り" + m_RemainBalls[0] + "球です");
                     break;
 
                 case Team.Blue:
-                    Debug.Log("次に青チームが投げます");
-                    Debug.Log("残り" + m_RemainBalls[1] + "球です");
+                    // Debug.Log("次に青チームが投げます");
+                    // Debug.Log("残り" + m_RemainBalls[1] + "球です");
                     break;
 
                 case Team.Num:
-                    Debug.Log("次にボールを投げるチームが決まっていません");
+                    // Debug.Log("次にボールを投げるチームが決まっていません");
                     break;
             }
         }
@@ -508,17 +508,17 @@ public class TeamFlowScript : MonoBehaviour
     {
         if(team == 0)
         {
-            Debug.Log("次は赤です");
+            // Debug.Log("次は赤です");
             m_NextTeam = Team.Red;
         }
         else if(team == 1)
         {
-            Debug.Log("次は青です");
+            // Debug.Log("次は青です");
             m_NextTeam = Team.Blue;
         }
         else
         {
-            Debug.LogError("同期がうまくいっていません。次に投げるチームを取れませんでした。");
+            // Debug.LogError("同期がうまくいっていません。次に投げるチームを取れませんでした。");
             m_NextTeam = Team.Num;
         }
     }
@@ -527,17 +527,17 @@ public class TeamFlowScript : MonoBehaviour
     {
         if (team == 0)
         {
-            Debug.Log("最初に投げるのは赤です");
+            // Debug.Log("最初に投げるのは赤です");
             m_firstTeam = Team.Red;
         }
         else if (team == 1)
         {
-            Debug.Log("最初に投げるのは青です");
+            // Debug.Log("最初に投げるのは青です");
             m_firstTeam = Team.Blue;
         }
         else
         {
-            Debug.LogError("同期がうまくいっていません。最初に投げるチームを取れませんでした。");
+            // Debug.LogError("同期がうまくいっていません。最初に投げるチームを取れませんでした。");
             m_firstTeam = Team.Num;
         }
     }

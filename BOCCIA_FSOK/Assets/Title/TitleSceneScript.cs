@@ -10,6 +10,7 @@ public class TitleSceneScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Application.targetFrameRate = 60;
         touchManager = TouchManager.GetInstance();
         changeScene = this.gameObject.GetComponent<ChangeSceneScript>();
         touchSE = this.gameObject.GetComponent<AudioSource>();

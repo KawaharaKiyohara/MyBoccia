@@ -44,7 +44,7 @@ public class EndManager : MonoBehaviour
         switch (m_TeamFlow.GetState())
         {
             case TeamFlowState.Start:
-                Debug.Log("TeamFlowState.Start");
+                // Debug.Log("TeamFlowState.Start");
                 GameObject.Find("GameCamera").GetComponent<GameCameraScript>().SetIfFollow(false);
                 //ボールを投げ始めるとき
                 //一番初めなのでジャックプリーズと出す
@@ -57,7 +57,7 @@ public class EndManager : MonoBehaviour
 
             case TeamFlowState.ThrowStart:
 
-                Debug.Log("TeamFlowState.ThrowStart");
+                // Debug.Log("TeamFlowState.ThrowStart");
                 Client = false;
                 if (m_BallFlow.IsPreparedJack() == true)
                 {
@@ -83,7 +83,7 @@ public class EndManager : MonoBehaviour
                 break;
 
             case TeamFlowState.Wait:
-                Debug.Log("TeamFlowState.Wait");
+                // Debug.Log("TeamFlowState.Wait");
 
                 // 一定間隔で
                 time += Time.deltaTime;
@@ -118,7 +118,7 @@ public class EndManager : MonoBehaviour
                 break;
 
             case TeamFlowState.Throw:
-                Debug.Log("TeamFlowState.Throw");
+                // Debug.Log("TeamFlowState.Throw");
                 //ボールを投げた時
                 //タイマーを止める
                 m_Timer.TimerStop();
@@ -127,7 +127,7 @@ public class EndManager : MonoBehaviour
                 break;
 
             case TeamFlowState.Move:
-                Debug.Log("TeamFlowState.Move");
+                // Debug.Log("TeamFlowState.Move");
                 //ボールがまだ動いている
                 //全てのボールが停止しているか調べる
                 if (m_TeamFlow.IsStopAllBalls())
@@ -139,7 +139,7 @@ public class EndManager : MonoBehaviour
                 break;
 
             case TeamFlowState.Stop:
-                Debug.Log("TeamFlowState.Stop");
+                // Debug.Log("TeamFlowState.Stop");
                 //全てのボールが停止している
                 //遅延を開始させる
                 m_Delay.DelayStart();
@@ -147,7 +147,7 @@ public class EndManager : MonoBehaviour
                 break;
 
             case TeamFlowState.Delay:
-                Debug.Log("TeamFlowState.Delay");
+                // Debug.Log("TeamFlowState.Delay");
                 //遅延中                
                 if (!m_Delay.IsDelay())
                 {
@@ -162,7 +162,7 @@ public class EndManager : MonoBehaviour
             case TeamFlowState.Caluc:
                 // 次のターンへ。
                 m_turnNo++;
-                Debug.Log("TeamFlowState.Caluc");
+                // Debug.Log("TeamFlowState.Caluc");
                 //Debug.Log("計算開始");
                 if (m_TeamFlow.GetNowTeam() == MyTeamCol|| m_IsUseAI)
                 {
@@ -193,7 +193,7 @@ public class EndManager : MonoBehaviour
                 break;
 
             case TeamFlowState.SendSyncDataToClient:
-                Debug.Log("TeamFlowState.SendInfo");
+                // Debug.Log("TeamFlowState.SendInfo");
                 // 同期データをクライアントに送る
                 m_SendManager.SendSyncDataToClient(m_TeamFlow);                
                 // クライアントからのデータ受信メッセージ受け取り待ちに遷移
@@ -202,7 +202,7 @@ public class EndManager : MonoBehaviour
                 break;
             // 
             case TeamFlowState.WaitRecievedSyncDataFromMaster:
-                Debug.Log("TeamFlowState.Sync");
+                // Debug.Log("TeamFlowState.Sync");
                 Client = true;
 
                 if (m_SendManager.RecieveSyncDataFromMaster(m_TeamFlow) == false)
@@ -224,14 +224,14 @@ public class EndManager : MonoBehaviour
                 break;
 
             case TeamFlowState.WaitNotifyRecievedSyncDataFromClient:
-                Debug.Log("TeamFlowState.WaitSyncDataFromClient");
+                // Debug.Log("TeamFlowState.WaitSyncDataFromClient");
                 if (!m_SendManager.IsRecieved_NotifyRecievedSyncDataFromClient(m_turnNo))
                 {
                     // まだクライアントからこのターンのメッセージを受けった通知が来ていない。
                     timeSendMasterData += Time.deltaTime;
                     if (timeSendMasterData > 5.0f)
                     {
-                        Debug.Log("時間が掛かっているため、再度マスターデータを送信します。");
+                        // Debug.Log("時間が掛かっているため、再度マスターデータを送信します。");
                         //パケットロストの可能性があるため同期データ送信に再度移行
                         m_TeamFlow.SetState(TeamFlowState.SendSyncDataToClient);
                         timeSendMasterData = 0.0f;
@@ -246,7 +246,7 @@ public class EndManager : MonoBehaviour
                 break;
 
             case TeamFlowState.SyncEnd:
-                Debug.Log("TeamFlowState.SyncEnd");
+                // Debug.Log("TeamFlowState.SyncEnd");
                 
                 GameObject.Find("GameCamera").GetComponent<GameCameraScript>().SetIfFollow(false);
                 bool endflag = true;
@@ -290,7 +290,7 @@ public class EndManager : MonoBehaviour
                 break;
 
             case TeamFlowState.End:
-                Debug.Log("TeamFlowState.End");
+                // Debug.Log("TeamFlowState.End");
                 //エンドが終わった時
                 //エンドが終わったフラグを立てる
                 m_EndFlow.GameEnd();
